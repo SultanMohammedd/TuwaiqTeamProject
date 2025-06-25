@@ -454,7 +454,7 @@ GameObject:
   - component: {fileID: 804005281}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -634,6 +634,7 @@ GameObject:
   - component: {fileID: 1005133083}
   - component: {fileID: 1005133088}
   - component: {fileID: 1005133087}
+  - component: {fileID: 1005133089}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -745,9 +746,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be4054b8331d89449a5241626a9ad25b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 15
+  playerSpeed: 5
   jumpForce: 5
   rb: {fileID: 1005133088}
+  Collider: {fileID: 1005133089}
+  jumpAllowed: 0
 --- !u!54 &1005133088
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -775,6 +778,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!136 &1005133089
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005133082}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1116817285
 GameObject:
   m_ObjectHideFlags: 0
