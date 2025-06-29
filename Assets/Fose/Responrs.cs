@@ -18,8 +18,6 @@ public class Responrs : MonoBehaviour
 
     void SpawnEnemys()
     {
-       Debug.Log("Enemy SpawnEnemys");
-
        float PoseRangX = transform.position.x;
        PoseRangX -= Random.Range(-100f, 100f);
            Vector3 SpawnPoint = new Vector3(PoseRangX,transform.position.y,transform.position.z);
