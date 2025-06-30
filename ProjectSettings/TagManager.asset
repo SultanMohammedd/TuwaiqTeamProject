@@ -6,11 +6,15 @@ TagManager:
   tags:
   - Ground
   - Enemy
+  - Goal
+  - Lose
+  - EnemyHitBox
+  - PlayerAgro
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 
