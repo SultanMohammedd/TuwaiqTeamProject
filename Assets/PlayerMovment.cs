@@ -91,7 +91,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             knockbackDirectionX = (transform.position.x - Enenmy.transform.position.x);
             knockbackDirectionZ = (transform.position.z - Enenmy.transform.position.z);
             playerHealth -= 1;
-            rb.AddForce(knockbackDirectionX*100, 4, knockbackDirectionZ*100, ForceMode.Impulse);
+            rb.AddForce(knockbackDirectionX*10, 4, knockbackDirectionZ*10, ForceMode.Impulse);
 
             if (playerHealth == 2)
             {
