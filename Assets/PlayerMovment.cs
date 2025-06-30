@@ -1,10 +1,14 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
     public float playerSpeed;
+    public float sprintSpeed;
     public float playerHealth;
+    public int maxHealth = 7;
     public float jumpForce;
     public float mouseSense;
     public bool jumpAllowed;
@@ -18,14 +22,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public GameObject Heart3;
     public GameObject Enenmy;
 
-    
+
 
     public float knockbackDirectionX;
     public float knockbackDirectionZ;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        playerHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -37,11 +41,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            playerSpeed = 15;
+            playerSpeed += sprintSpeed;
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            playerSpeed = 5;
+            playerSpeed -= sprintSpeed;
         }
 
         Vector3 cameraForward = PlayerCam.forward; // Or Camera.main.transform.forward if using main camera
@@ -91,7 +95,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             knockbackDirectionX = (transform.position.x - Enenmy.transform.position.x);
             knockbackDirectionZ = (transform.position.z - Enenmy.transform.position.z);
             playerHealth -= 1;
-            rb.AddForce(knockbackDirectionX*10, 4, knockbackDirectionZ*10, ForceMode.Impulse);
+            //rb.AddForce(knockbackDirectionX * 10, 4, knockbackDirectionZ * 10, ForceMode.Impulse);
 
             if (playerHealth == 2)
             {
@@ -131,6 +135,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             jumpAllowed = false;
         }
+    }
+
+    public void StartPowerupCoroutine(IEnumerator coroutine)
+    {
+        StartCoroutine(coroutine);
     }
 
 }
