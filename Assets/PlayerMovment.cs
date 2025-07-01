@@ -129,13 +129,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
 
     }
-    public void OnCollisionExit(Collision other)
-    {
-        if (other.gameObject.tag == "Ground")
-        {
-            jumpAllowed = false;
-        }
-    }
+    //public void OnCollisionExit(Collision other)
+    //{
+    //    if (other.gameObject.tag == "Ground")
+    //    {
+    //        jumpAllowed = false;
+    //    }
+    //}
 
     public void StartPowerupCoroutine(IEnumerator coroutine)
     {
