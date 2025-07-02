@@ -3526,9 +3526,10 @@ MonoBehaviour:
   playerSpeed: 5
   sprintSpeed: 10
   playerHealth: 3
-  maxHealth: 7
+  maxHealth: 3
   jumpForce: 5
   mouseSense: 5
+  routationSpeed: 0
   jumpAllowed: 0
   rb: {fileID: 1005133088}
   Collider: {fileID: 1005133083}
@@ -3539,6 +3540,7 @@ MonoBehaviour:
   Heart2: {fileID: 1623427514}
   Heart3: {fileID: 1431102053}
   Enenmy: {fileID: 1888556812}
+  Animator: {fileID: 0}
   knockbackDirectionX: 0
   knockbackDirectionZ: 0
 --- !u!54 &1005133088

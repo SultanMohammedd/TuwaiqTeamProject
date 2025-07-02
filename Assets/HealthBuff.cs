@@ -14,5 +14,27 @@ public class HealthBuff : PowerupEffect
             taragt.GetComponent<NewMonoBehaviourScript>().playerHealth =
                 taragt.GetComponent<NewMonoBehaviourScript>().maxHealth;
         }
+        if (taragt.GetComponent<NewMonoBehaviourScript>().playerHealth == 3)
+        {
+            taragt.GetComponent<NewMonoBehaviourScript>().Heart3.SetActive(true);
+            taragt.GetComponent<NewMonoBehaviourScript>().Heart2.SetActive(true);
+            taragt.GetComponent<NewMonoBehaviourScript>().Heart1.SetActive(true);
+        }
+        if (taragt.GetComponent<NewMonoBehaviourScript>().playerHealth == 2)
+        {
+            taragt.GetComponent<NewMonoBehaviourScript>().Heart3.SetActive(false);
+            taragt.GetComponent<NewMonoBehaviourScript>().Heart2.SetActive(true);
+            taragt.GetComponent<NewMonoBehaviourScript>().Heart1.SetActive(true);
+        }
+        if (taragt.GetComponent<NewMonoBehaviourScript>().playerHealth == 1)
+        {
+            taragt.GetComponent<NewMonoBehaviourScript>().Heart2.SetActive(false);
+            taragt.GetComponent<NewMonoBehaviourScript>().Heart1.SetActive(true);
+        }
+        if (taragt.GetComponent<NewMonoBehaviourScript>().playerHealth == 0)
+        {
+            taragt.GetComponent<NewMonoBehaviourScript>().Heart1.SetActive(false);
+
+        }
     }
 }

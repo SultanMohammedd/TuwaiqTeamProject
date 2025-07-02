@@ -8,9 +8,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public float playerSpeed;
     public float sprintSpeed;
     public float playerHealth;
-    public int maxHealth = 7;
+    public int maxHealth = 3;
     public float jumpForce;
     public float mouseSense;
+    public float routationSpeed;
     public bool jumpAllowed;
     public Rigidbody rb;
     public Collider Collider;
@@ -22,13 +23,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public GameObject Heart3;
     public GameObject Enenmy;
 
-
+    public Animator Animator;
 
     public float knockbackDirectionX;
     public float knockbackDirectionZ;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Animator.SetBool("isIdle", true);
         playerHealth = maxHealth;
     }
 
@@ -47,6 +49,16 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             playerSpeed -= sprintSpeed;
         }
+        if(Input.GetKeyDown(KeyCode.W))
+        { 
+            Animator.SetBool("isWalking",true);
+        
+        }
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            Animator.SetBool("isWalking", false);
+            Animator.SetBool("isIdle", true);
+        }
 
         Vector3 cameraForward = PlayerCam.forward; // Or Camera.main.transform.forward if using main camera
         cameraForward.y = 0; // Flatten the vector to the horizontal plane
@@ -64,9 +76,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
 
         Vector3 finalHorizontalVelocity = moveDirection * playerSpeed;
-
+        
         rb.linearVelocity = new Vector3(finalHorizontalVelocity.x, rb.linearVelocity.y, finalHorizontalVelocity.z);
-
+        if (finalHorizontalVelocity != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(moveDirection,Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation,toRotation,routationSpeed * Time.deltaTime);
+        }
         if (Input.GetKeyDown(KeyCode.Space) && jumpAllowed)
         {
             rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
@@ -96,18 +112,27 @@ public class NewMonoBehaviourScript : MonoBehaviour
             knockbackDirectionZ = (transform.position.z - Enenmy.transform.position.z);
             playerHealth -= 1;
             //rb.AddForce(knockbackDirectionX * 10, 4, knockbackDirectionZ * 10, ForceMode.Impulse);
-
+            if (playerHealth == 3)
+            {
+                Heart3.SetActive(true);
+                Heart2.SetActive(true);
+                Heart1.SetActive(true);
+            }
             if (playerHealth == 2)
             {
                 Heart3.SetActive(false);
+                Heart2.SetActive(true);
+                Heart1.SetActive(true);
             }
             if (playerHealth == 1)
             {
                 Heart2.SetActive(false);
+                Heart1.SetActive(true);
             }
             if (playerHealth == 0)
             {
                 Heart1.SetActive(false);
+                
             }
 
             if (playerHealth <= 0)
@@ -118,6 +143,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         if (other.CompareTag("Goal"))
         {
             WinPanel.SetActive(true);
+            Time.timeScale = true ? 0 : 1;
         }
     }
 
