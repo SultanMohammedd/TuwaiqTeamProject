@@ -10,6 +10,7 @@ TagManager:
   - Lose
   - EnemyHitBox
   - PlayerAgro
+  - Help
   layers:
   - Default
   - TransparentFX

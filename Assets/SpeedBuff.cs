@@ -30,12 +30,12 @@ public class SpeedBuff : PowerupEffect
     private IEnumerator SpeedBuffRoutine(NewMonoBehaviourScript playerScript, GameObject target)
     {
         float oldSpeed = playerScript.playerSpeed; // Store the original speed
-        target.transform.localScale *= 4f;
+        
         playerScript.playerSpeed = buffAmount; // Apply the buff
         Debug.Log($"Speed buff applied! New speed: {playerScript.playerSpeed}");
         
         yield return new WaitForSeconds(buffDuration); // Wait for the duration
-        target.transform.localScale /= 4f;
+        
         playerScript.playerSpeed = oldSpeed; // Revert to original speed
         Debug.Log($"Speed buff ended! Speed reverted to: {playerScript.playerSpeed}");
     }

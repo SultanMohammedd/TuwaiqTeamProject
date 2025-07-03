@@ -7,10 +7,12 @@ public class FoseMovment : MonoBehaviour
     public NavMeshAgent EnemyAgent;
     public Transform PlayerPose;
     public Vector3 EnemyAgro;
+    public Animator Animator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         EnemyAgro = transform.position;
+        Animator.SetBool("isIdle", true);
     }
 
     // Update is called once per frame
@@ -18,6 +20,7 @@ public class FoseMovment : MonoBehaviour
     {
         //transform.position -= new Vector3(0, 0, FoseSpeed);
         EnemyAgent.SetDestination(EnemyAgro);
+        
     }
 
 
@@ -26,7 +29,7 @@ public class FoseMovment : MonoBehaviour
     {
         if (other.gameObject.tag == "PlayerAgro")
         {
-
+            Animator.SetBool("isWalking", true);
             EnemyAgro = other.transform.position;
         }
 
@@ -37,6 +40,8 @@ public class FoseMovment : MonoBehaviour
         if (other.gameObject.CompareTag("PlayerAgro"))
         {
             EnemyAgro = transform.position;
+            Animator.SetBool("isIdle", true);
+            Animator.SetBool("isWalking", false);
         }
     }
    

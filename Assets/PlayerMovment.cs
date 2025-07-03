@@ -18,6 +18,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public Transform PlayerCam;
     public GameObject WinPanel;
     public GameObject LosePanel;
+    public GameObject HelpPanel;
     public GameObject Heart1;
     public GameObject Heart2;
     public GameObject Heart3;
@@ -27,6 +28,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     public float knockbackDirectionX;
     public float knockbackDirectionZ;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -100,11 +102,16 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         float mouseY = Input.GetAxis("Mouse Y") * mouseSense;
         routCam -= mouseY;
-        float finalRoutCam = Math.Clamp(routCam, -20, 40);
+        float finalRoutCam = Math.Clamp(routCam, -10, 20);
         PlayerCam.transform.localRotation = Quaternion.Euler(finalRoutCam, 0, 0);
     }
     public void OnTriggerEnter(Collider other)
     {
+
+        if (other.gameObject.tag == "Help")
+        {
+            HelpPanel.SetActive(true);
+        }
 
         if (other.CompareTag("EnemyHitBox"))
         {
@@ -138,12 +145,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
             if (playerHealth <= 0)
             {
                 LosePanel.SetActive(true);
+                Time.timeScale = true ? 0 : 1;
             }
         }
         if (other.CompareTag("Goal"))
         {
+            
             WinPanel.SetActive(true);
             Time.timeScale = true ? 0 : 1;
+            
         }
     }
 
@@ -153,15 +163,18 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             jumpAllowed = true;
         }
-
     }
-    //public void OnCollisionExit(Collision other)
-    //{
-    //    if (other.gameObject.tag == "Ground")
-    //    {
-    //        jumpAllowed = false;
-    //    }
-    //}
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Help")
+        {
+            HelpPanel.SetActive(false);
+        }
+    }
+
+
+
+
 
     public void StartPowerupCoroutine(IEnumerator coroutine)
     {

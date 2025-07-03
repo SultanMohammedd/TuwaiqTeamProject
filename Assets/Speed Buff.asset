@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8394a589ebaf33341b25aacabf30c7e1, type: 3}
   m_Name: Speed Buff
   m_EditorClassIdentifier: 
-  buffAmount: 50
+  buffAmount: 20
   buffDuration: 3
